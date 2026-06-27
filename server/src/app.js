@@ -18,14 +18,7 @@ const allowedOrigins = [
 ].filter(Boolean);
 
 app.use(cors({
-    origin: (origin, callback) => {
-        // Allow requests with no origin (mobile apps, curl, etc.)
-        if (!origin) return callback(null, true);
-        if (allowedOrigins.includes(origin)) {
-            return callback(null, true);
-        }
-        return callback(new Error("CORS not allowed for: " + origin));
-    },
+    origin: allowedOrigins,
     credentials: true,
 }));
 app.use(cookieParser());

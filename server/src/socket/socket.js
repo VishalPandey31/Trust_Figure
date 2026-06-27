@@ -12,9 +12,16 @@ export const getReceiverSocketId = (receiverId) => {
 };
 
 export const initSocket = (server) => {
+    const allowedOrigins = [
+        "http://localhost:5173",
+        "https://trust-figure.surge.sh",
+        "https://Trust_Figure.surge.sh",
+        process.env.CLIENT_URL,
+    ].filter(Boolean);
+
     io = new Server(server, {
         cors: {
-            origin: "http://localhost:5173",
+            origin: allowedOrigins,
             credentials: true
         }
     });

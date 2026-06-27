@@ -215,7 +215,7 @@ export const refreshToken = async (
 
         const decoded = jwt.verify(
             refreshToken,
-            process.env.JWT_REFRESH_SECRET
+            process.env.JWT_REFRESH_SECRET || "fallback_refresh_secret_key_12345"
         );
 
         const accessToken =
